@@ -1,0 +1,113 @@
+body {
+    margin: 0 auto;
+    max-width: 1600px;
+    font-family: 'Inter', sans-serif;
+}
+
+/* //Ipaddress */
+.ipaddress h2,#addressno {
+    display: inline;
+}
+
+#addressno {
+    font-size: 22px;
+}
+
+.ipaddress {
+    margin: 10px;
+}
+
+.getdatabtn-div {
+    margin: 10px;
+}
+
+.getdatabtn-div button {
+    width: 200px;
+    height: 40px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-clicked {
+    border: 8px solid blue;
+}
+
+/* //get contentdiv */
+.getcontent {
+    display: none;
+}
+
+span {
+    font-weight: 400;
+}
+
+/* //Latitude,Longitude Data */
+
+.lat-long {
+    font-size: 18px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    font-weight: bold;
+    padding: 10px;
+    row-gap: 15px;
+}
+
+.lat-long div {
+  width: 400px;
+}
+
+.map-belowcont {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+
+/* //Gooogle Maps Iframe */
+
+.gmapsiframe iframe {
+    width: 96%;
+    height: 500px;
+    padding: 20px;
+}
+
+/* /search Box */
+
+#searchip {
+    width: 96%;
+    margin: 20px;
+}
+
+
+/* //Postoffice data */
+.postoffices-div {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    row-gap: 25px;
+    column-gap: 25px;
+}
+
+.card {
+    border: 1px solid black;
+    border-radius: 6px;
+    /* width: fit-content; */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    font-weight: bold;
+}
+
+
+.card span {
+    font-weight: 400;
+}
+

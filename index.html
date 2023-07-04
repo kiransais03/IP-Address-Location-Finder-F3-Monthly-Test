@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Guduru Kiran Sai">
+        <meta name="description" content="Find your IP address,Location and the Nearby Post Offices">
+        <meta name="keywords" content="ipaddress,my location,postoffice,pincode">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Get My IP Address and Location</title>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <nav>
+
+        </nav>
+        <main>
+            <div class="main-container">
+                <div class="ipaddress">
+                    <h2>My Public IP ADDRESS:</h2>
+                    <p id="addressno"></p>
+                </div>
+                <div class="getdatabtn-div">
+                    <button class="getdata-btn">Get Data</button>
+                </div>
+                <div class="getcontent">
+                   
+                </div>
+            </div>
+        </main>
+
+
+        <script src=
+        "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        </script>
+         <script>
+     
+            /* Add "https://api.ipify.org?format=json" statement
+                       this will communicate with the ipify servers in
+                       order to retrieve the IP address $.getJSON will
+                       load JSON-encoded data from the server using a
+                       GET HTTP request */
+                        
+            $.getJSON("https://api64.ipify.org?format=json", function(data) {
+                 
+                // Setting text of element P with id addressno
+                $("#addressno").html(data.ip);
+            })
+            </script>
+            <script src="./script.js"></script>
+    </body>
+</html>
