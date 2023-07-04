@@ -26,7 +26,8 @@ async function fetchiplocation(ipaddress) {
   let pincodeapiresponse=await fetch(`https://api.postalpincode.in/pincode/${result.postal} `);
   let pincoderesult=await pincodeapiresponse.json();
   console.log(result);
-  displayinfofunction(result,datetime_str,pincoderesult);
+  await displayinfofunction(result,datetime_str,pincoderesult);
+  await searchcodebuild();
 }
 catch(error) {
     console.log(error);
@@ -34,15 +35,15 @@ catch(error) {
 }
 }
 
-
-function displayinfofunction(result,datetime_str,pincoderesult) {
+let postofficesreferencearr;
+async function displayinfofunction(result,datetime_str,pincoderesult) {
     try {
     
     let getcontentdiv = document.getElementsByClassName('getcontent')[0];
     let latitude=(result.loc.split(','))[0];
     let longitude=(result.loc.split(','))[1]
     
-    getcontentdiv.innerHTML=` <div class="lat-long">
+    getcontentdiv.innerHTML=`<div class="lat-long">
                                 <div>Lat: <span>${latitude}</span></div>
                                 <div>City: <span>${result.city}</span> </div>
                                 <div>Organisation: <span>${result.org}</span></div>
@@ -69,6 +70,7 @@ function displayinfofunction(result,datetime_str,pincoderesult) {
 getcontentdiv.style.display='block';
 let postofficediv=document.getElementsByClassName('postoffices-div')[0];
 let postofficeslistarr=pincoderesult[0].PostOffice;
+postofficesreferencearr=postofficeslistarr;  //referring to the array
 
 for(let i=0;i<postofficeslistarr.length;i++)
 {
@@ -89,36 +91,51 @@ catch(error) {
 }    
 
 
-
 //Search Fucntionality
-
-// Search functionality
-
+async function searchcodebuild() {
+    try {
 let searchinput=document.getElementById('searchip');
 console.log(searchinput)
 searchinput.addEventListener('keyup',searchfunction);
+    } catch(error) 
+    {
+        console.log(error);
+    }
+}
 
 function searchfunction(event) {
     try{
         console.log("entered")
-    let searchtext=event.target.value.toLowerCase();
-    if(searchtext.trim()==='')
-    {
-        console.log('exit');
-        document.getElementsByClassName('items-container')[0].style.display='block';
-        document.getElementsByClassName('searchcontainer')[0].style.display='none';
-        return;
-    }
+    let searchtext=event.target.value.toLowerCase().trim();
     console.log(searchtext);
-    console.log(result)
-    let searchedarr=result.filter((currelement)=>{
-        return currelement.title.toLowerCase().includes(searchtext);
+    console.log(postofficesreferencearr);
+    let searchedarr=postofficesreferencearr.filter((currelement)=>{
+         if((currelement.Name.toLowerCase().includes(searchtext)) || (currelement.BranchType.toLowerCase().includes(searchtext))||(currelement.District.toLowerCase().includes(searchtext)))
+         {
+            console.log(searchtext)
+            return true;
+         } else {
+            return false;
+         }
     });
-    document.getElementsByClassName('searchcontainer')[0].innerHTML=''
-    searchaddcardstoui(searchedarr);
-} catch(error) {
+
+
+    let postofficediv=document.getElementsByClassName('postoffices-div')[0];
+    postofficediv.innerHTML=''
+    for(let i=0;i<searchedarr.length;i++)
+   {
+    let carddiv=document.createElement('div');
+    carddiv.className='card';
+    carddiv.innerHTML=`<div>Name: <span>${searchedarr[i].Name}</span></div>
+                        <div>Branch Type: <span>${searchedarr[i].BranchType}</span></div>
+                        <div>Delivery Status: <span>${searchedarr[i].DeliveryStatus}</span></div>
+                        <div>District: <span>${searchedarr[i].District}</span></div>
+                        <div>Division: <span>${searchedarr[i].Division}</span></div>`;
+    postofficediv.append(carddiv);
+   }
+    } catch(error) {
     console.log(error);
-}
+        }
 
 }
 

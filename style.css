@@ -37,6 +37,7 @@ body {
 /* //get contentdiv */
 .getcontent {
     display: none;
+    margin-bottom: 70px;
 }
 
 span {
@@ -80,9 +81,24 @@ span {
 
 /* /search Box */
 
-#searchip {
-    width: 96%;
+.searchip-div {
+    display: flex;
+    border: 1px solid black;
     margin: 20px;
+    height: 40px;
+    align-items: center;
+    border-radius: 5px;
+}
+
+#searchip {
+    width: 100%;
+    border:none;
+    font-size: 25px;
+    padding-left: 10px;
+}
+
+#searchip:focus {
+    outline: none;
 }
 
 
