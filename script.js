@@ -20,8 +20,15 @@ function getdatafunction(event) {
 let latitude;
 let longitude;
 
-navigator.geolocation.getCurrentPosition(success);
+const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
 
+  function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
 
 function success(position) {
          const crd = position.coords;
@@ -31,6 +38,10 @@ function success(position) {
 
       console.log(latitude,longitude)
 }
+
+navigator.geolocation.getCurrentPosition(success,error,options);
+
+
 
 
 async function fetchiplocation(ipaddress) {
