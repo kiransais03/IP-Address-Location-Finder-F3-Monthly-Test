@@ -17,6 +17,21 @@ function getdatafunction(event) {
     }
 }
 
+let latitude;
+let longitude;
+
+navigator.geolocation.getCurrentPosition(success);
+
+
+function success(position) {
+         const crd = position.coords;
+
+      latitude=crd.latitude;
+      longitude= crd.longitude;
+
+      console.log(latitude,longitude)
+}
+
 
 async function fetchiplocation(ipaddress) {
     try {
@@ -40,8 +55,8 @@ async function displayinfofunction(result,datetime_str,pincoderesult) {
     try {
     
     let getcontentdiv = document.getElementsByClassName('getcontent')[0];
-    let latitude=(result.loc.split(','))[0];
-    let longitude=(result.loc.split(','))[1]
+    // let latitude=(result.loc.split(','))[0];
+    // let longitude=(result.loc.split(','))[1]
     
     getcontentdiv.innerHTML=`<div class="lat-long">
                                 <div>Lat: <span>${latitude}</span></div>
@@ -138,4 +153,5 @@ function searchfunction(event) {
         }
 
 }
+
 
